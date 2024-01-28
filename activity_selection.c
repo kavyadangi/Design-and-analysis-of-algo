@@ -3,7 +3,7 @@
 struct Activity {
     int start, finish;
 };
-int compareActivities(const void *a, const void *b) {
+int compareActivities(const void *a, const void *b) {//using dynamic memory alloction for comparing activties so as to put in ready queue
     return ((struct Activity *)a)->finish - ((struct Activity *)b)->finish;
 }
 void activitySelection(struct Activity activities[], int n) {
@@ -26,7 +26,7 @@ int main() {
 
     printf("Enter the number of activities: ");
     scanf("%d", &n);
-    struct Activity activities[n]; // Fixed-size array
+    struct Activity activities[n]; // fixed-size array
     printf("Enter start and finish times for each activity:\n");
     for (int i = 0; i < n; i++) {
         printf("Activity %d: ", i + 1);
