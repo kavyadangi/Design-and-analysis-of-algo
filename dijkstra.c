@@ -1,16 +1,18 @@
+//CODE BY KAVYA
 #include <stdio.h>
-#include<limits.h>
+#include<limits.h>//as we are using int_max so as to check condition
 #include <stdbool.h>
 //#define V 59
-int minDistance(int dist[], bool Visited[], int V) {
+int minDistance(int dist[], bool Visited[], int V) {//func to find min value
     int max = INT_MAX, min_index;
     for (int v = 0; v < V; v++) {
-        if (!Visited[v] && max>=dist[v]) {
-            max = dist[v];
+        if (!Visited[v] && max>=dist[v]) {//checking cndtion
+            max = dist[v];//defoinning max to dist
             min_index = v;
-        }
+        };
+        
     }
-    return min_index;
+    return min_index;//returning minimum index
 }
 void printSolution(int dist[], int n) {
     printf("Vertex Distance from Source\n");
@@ -20,19 +22,19 @@ void printSolution(int dist[], int n) {
 }
 void dijkstra(int V, int graph[V][V], int src) {
     int dist[V];
-    bool Visited[V];
+    bool Visited[V];//to chck whether the vertex is vistired or not in true or false
     for (int i = 0; i < V; i++) {
         dist[i] = INT_MAX;
         Visited[i] = false;
     }
-    dist[src] = 0;
+    dist[src] = 0;//firstly defining it as 0
     for (int count = 0; count < V - 1; count++) {
         int u = minDistance(dist, Visited, V);
         Visited[u] = true;
 
         for (int v = 0; v < V; v++) {
             if (!Visited[v] && graph[u][v] && dist[u] != INT_MAX && (dist[u] + graph[u][v] < dist[v])) {
-                dist[v] = dist[u] + graph[u][v];
+                dist[v] = dist[u] + graph[u][v];//formaulaa for dist
             }
         }
     }
